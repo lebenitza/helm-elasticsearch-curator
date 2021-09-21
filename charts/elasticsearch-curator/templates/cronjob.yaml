@@ -33,6 +33,9 @@ spec:
       labels:
         app: {{ template "elasticsearch-curator.name" . }}
         release: {{ .Release.Name }}
+        {{- if .Values.cronjob.labels }}
+        {{ toYaml .Values.cronjob.labels | nindent 12 }}
+        {{- end }}
     spec:
       template:
         metadata:
